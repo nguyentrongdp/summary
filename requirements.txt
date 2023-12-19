@@ -1,0 +1,8 @@
+openai==0.28.1
+tiktoken==0.5.1
+chromadb==0.4.15
+langchain==0.0.305
+python-dotenv==1.0.0
+bs4==0.0.1
+pypdf==3.17.2
+multiprocess==0.70.15
