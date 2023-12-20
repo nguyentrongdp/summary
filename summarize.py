@@ -43,7 +43,9 @@ def summarize_doc(file_path: str):
     loader = PyPDFLoader(file_path)
     docs = loader.load()
 
-    return stuff_chain.run(docs)
+    res = stuff_chain.run(docs)
+
+    return res
 
 
 if __name__ == '__main__':

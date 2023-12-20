@@ -46,8 +46,14 @@ stuff_chain = StuffDocumentsChain(
 def summarize_doc(file_path: str):
     loader = PyPDFLoader(file_path)
     docs = loader.load()
+    res = stuff_chain.run(docs)
+    try:
+        res = eval(res)
+    except:
+        print(f"Error: Unable to parse json, here's the response: {res}")
+        return
 
-    return stuff_chain.run(docs)
+    return res
 
 
 if __name__ == '__main__':
