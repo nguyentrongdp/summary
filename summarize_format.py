@@ -18,9 +18,8 @@ document_prompt = PromptTemplate(
 # Define prompt
 prompt_template = """
 Given this content below, return a JSON object with the following keys:
-- summary: Summary of the document.
-- keywords: Top 50 keywords of the document.
-- category: the category of the document, category include 'Medicine', 'Chemistry', 'Biology', 'Humanities', 'Physics', 'Engineering', 'Math', 'Ecology', 'Computer Science', 'Economics', 'Geosci'.
+- keywords: provide at least 30 keywords in the research article.
+- category: categorize and assign to categories, document may be assigned to more than one category, categories are only allowed to be taken from this list: 'Medicine', 'Chemistry', 'Biology', 'Humanities', 'Physics', 'Engineering', 'Environmental Science', 'Math', 'Ecology', 'Computer Science', 'Economics', 'Geophysical Sciences'.
 
 Don't narrate, just answer with a JSON object, nothing else.
 
@@ -31,7 +30,7 @@ Document content:
 prompt = ChatPromptTemplate.from_template(prompt_template)
 
 # Define LLM chain
-llm = ChatOpenAI(temperature=0, model_name="gpt-4-1106-preview",
+llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo-1106",
                  model_kwargs={"response_format": {"type": "json_object"}})
 
 llm_chain = LLMChain(llm=llm, prompt=prompt)
@@ -53,6 +52,5 @@ def summarize_doc(file_path: str):
 
 if __name__ == '__main__':
     res = summarize_doc('./docs/15440478.2020.1818344.pdf')
-    res = eval(res)
-    print(
-        f'Summary: {res["summary"]}\nKeyword: {res["keywords"]}\nCategory: {res["category"]}')
+    # res = eval(res)
+    print(res)
