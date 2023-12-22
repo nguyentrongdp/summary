@@ -2,10 +2,14 @@ import summarize_format as summarize
 from multiprocessing import Pool
 import time
 import os
+from PyPDF2 import PdfFileReader
 
 
 def summarize_async(doc_file_path):
     try:
+        reader = PdfFileReader(doc_file_path)
+        if reader.numPages > 20:
+            return doc_file_path, None, None
         summary = summarize.summarize_doc(doc_file_path)
         return doc_file_path, summary['keywords'], summary['category']
     except Exception as e:
