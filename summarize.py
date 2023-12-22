@@ -26,7 +26,7 @@ Summarize this document (only the summary of the response is included. Eliminate
 prompt = PromptTemplate.from_template(prompt_template)
 
 # Define LLM chain
-llm = ChatOpenAI(temperature=0, model_name="gpt-4-1106-preview")
+llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo-16k-0613")
 # llm = OpenRouterLLM(n=1, model='mistralai/mixtral-8x7b-instruct')
 # llm = OpenRouterLLM(n=1, model='mistralai/mistral-7b-instruct')
 llm_chain = LLMChain(llm=llm, prompt=prompt)
